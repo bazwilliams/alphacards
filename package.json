@@ -1,10 +1,11 @@
 {
   "devDependencies": {
-  "karma": "~0.9",
-  "karma-jasmine": "0.0.1",
-  "karma-requirejs": "0.0.1",
-  "karma-phantomjs-launcher": "0.0.2"
-},
+    "karma": "~0.9",
+    "karma-jasmine": "0.0.1",
+    "karma-requirejs": "0.0.1",
+    "karma-phantomjs-launcher": "0.0.2"
+  },
   "scripts": {
-  "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS,Firefox"
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS,Firefox"
+  }
 }

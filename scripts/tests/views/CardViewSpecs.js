@@ -8,7 +8,7 @@ define([
     describe('CardView', function () {
         var el, model, sut;
         beforeEach(function () {
-            el = $('<div>');
+            el = $('<div></div>');
             model = new Card(
                 { letter: 'a' }
             );

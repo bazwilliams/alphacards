@@ -1,13 +1,13 @@
 /*global define, document*/
 define([
-    'underscore',
     'jquery',
     'backbone',
-    'extensions'
-], function (_, $, Backbone) {
+    'views/GameView'
+], function ($, Backbone, GameView) {
     "use strict";
     var initialize = function () {
-        //$(document).find('.container').append(gameView.el);
+        var gameView = new GameView();
+        $(document).find('.container').append(gameView.el);
     };
 
     return {

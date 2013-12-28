@@ -7,7 +7,7 @@ define([
     describe('GameView', function () {
         var el, sut;
         beforeEach(function () {
-            el = $('<div>');
+            el = $('<div></div>');
             sut = new GameView({
                 el: el
             });

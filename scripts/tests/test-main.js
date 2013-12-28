@@ -5,7 +5,7 @@ var tests = Object.keys(window.__karma__.files).filter(function (file) {
 });
 
 require({
-    baseUrl: 'base/src/',
+    baseUrl: '/base/src/',
     paths: {
         jquery: '../libs/jquery-2.0.3.min',
         underscore: '../libs/underscore-min',

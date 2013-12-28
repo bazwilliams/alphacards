@@ -3,7 +3,7 @@
     "karma": "~0.9",
     "karma-jasmine": "0.0.1",
     "karma-requirejs": "0.0.1",
-    "karma-phantomjs-launcher": "0.0.2"
+    "karma-phantomjs-launcher": "0.0.2",
     "requirejs-handlebars": "0.1.1"
   },
   "scripts": {

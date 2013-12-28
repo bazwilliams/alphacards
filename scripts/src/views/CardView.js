@@ -3,8 +3,8 @@ define([
     'jquery',
     'backbone',
     'handlebars',
-    'text!templates/CardTemplate.html'
-], function ($, Backbone, Handlebars, CardTemplate) {
+    'text!templates/CardTemplate.tpl'
+], function ($, Backbone, Handlebars, CardTemplate, Card) {
     "use strict";
     return Backbone.View.extend({
         render: function () {

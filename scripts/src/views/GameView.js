@@ -3,7 +3,7 @@ define([
     'jquery',
     'backbone',
     'handlebars',
-    'text!templates/GameTemplate.html'
+    'text!templates/GameTemplate.tpl'
 ], function ($, Backbone, Handlebars, Template) {
     "use strict";
     return Backbone.View.extend({

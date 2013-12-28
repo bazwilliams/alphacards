@@ -9,7 +9,7 @@ require({
     paths: {
         jquery: '../libs/jquery-2.0.3.min',
         underscore: '../libs/underscore-min',
-        handlebars: '../libs/handlebars',
+        handlebars: '../libs/handlebars-v1.2.0',
         backbone: '../libs/backbone-min',
         text: '../libs/text'
     },

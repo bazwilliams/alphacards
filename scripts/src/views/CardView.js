@@ -10,6 +10,7 @@ define([
         render: function () {
             var template = Handlebars.compile(CardTemplate);
             this.$el.html(template(this.model.toJSON()));
+            return this;
         }
     });
 });

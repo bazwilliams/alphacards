@@ -1,0 +1,28 @@
+body {
+    background-color: #009900;
+    padding-top: 50px;
+}
+.container {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card {
+    width: 175px;
+    height: 225px;
+    background-color: #FAFAFA;
+    margin: 20px;
+    text-align: center;
+    float: left;
+    box-shadow: 6px 6px 15px #676;
+    border-radius: 10px;
+    padding-top:20px;
+}
+.candidates {
+    padding-left: 100px;
+    overflow: hidden;
+}
+.letter {
+    font-size: 150px;
+    color: #726252;
+}

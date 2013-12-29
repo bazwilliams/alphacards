@@ -7,7 +7,7 @@ define([
     describe('CardFactory', function () {
         var sut;
         beforeEach(function () {
-            sut = cardFactory.initialize(['a','b','c']);
+            sut = cardFactory.initialize('abcdefghijklmnopqrstuvwxyz');
         });
         describe('When getting guess card', function () {
             var card;
@@ -54,6 +54,9 @@ define([
                 });
                 it('should resort the collection', function () {
                     expect(candidates.sort).toHaveBeenCalled();
+                })
+                it('should not increase the size of the collection', function () {
+                    expect(candidates.size()).toBe(3);
                 })
             });
         });

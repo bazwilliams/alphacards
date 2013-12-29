@@ -12,6 +12,7 @@ define([
         },
         initialize: function (options) {
             this.callback = options.callback;
+            this.listenTo(this.model, 'change:letter', this.render);
         },
         clicked: function () {
             this.callback();

@@ -12,29 +12,26 @@ define([
         initialize: function () {
             var that = this;
             var getCallbackForCandidate = function (candidate) {
-                return candidate.get('letter') === that.model.get('letter') ? that.correctCardClicked : that.incorrectCardClicked;
+                return function() {
+                    if (candidate.get('letter') === that.model.get('letter')) {
+                        that.correctCardClicked();
+                    }
+                    else {
+                        that.incorrectCardClicked();
+                    }
+                };
             };
             this.guessCardView = new CardView({
                model: this.model
             });
-            this.candidate1View = new CardView({
-                model: this.collection.at(0),
-                callback: getCallbackForCandidate(this.collection.at(0))
+            this.views = {};
+            this.collection.forEach(function (model) {
+                that.views[model.id] = new CardView({
+                    model: model,
+                    callback: getCallbackForCandidate(model)
+                });
             });
-            this.listenTo(this.candidate1View, 'win', this.correctCardClicked);
-            this.listenTo(this.candidate1View, 'incorrect', this.incorrectCardClicked);
-            this.candidate2View = new CardView({
-                model: this.collection.at(1),
-                callback: getCallbackForCandidate(this.collection.at(1))
-            });
-            this.listenTo(this.candidate2View, 'win', this.correctCardClicked);
-            this.listenTo(this.candidate2View, 'incorrect', this.incorrectCardClicked);
-            this.candidate3View = new CardView({
-                model: this.collection.at(2),
-                callback: getCallbackForCandidate(this.collection.at(2))
-            });
-            this.listenTo(this.candidate3View, 'win', this.correctCardClicked);
-            this.listenTo(this.candidate3View, 'incorrect', this.incorrectCardClicked);
+            this.listenTo(this.collection, 'sort', this.render);
         },
         correctCardClicked: function () {
             this.trigger('win');
@@ -44,12 +41,11 @@ define([
         },
         render: function () {
             var template = Handlebars.compile(Template);
+            var that = this;
             this.$el.html(template);
-            this.assign({
-                '#card-to-guess': this.guessCardView,
-                '#candidate-card-1': this.candidate1View,
-                '#candidate-card-2': this.candidate2View,
-                '#candidate-card-3': this.candidate3View
+            this.assign('#card-to-guess', this.guessCardView);
+            this.collection.forEach(function (model, index) {
+                that.assign('#candidate-card-'+index, that.views[model.id]);
             });
             return this;
         }

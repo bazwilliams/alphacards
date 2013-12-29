@@ -37,6 +37,14 @@ define([
                     expect(callback.callback).toHaveBeenCalled();
                 })
             });
+            describe('and changed', function () {
+                beforeEach(function () {
+                    model.set('letter', 'b');
+                });
+                it('should display a lowercase b', function () {
+                    expect(el.find('.card .letter').text()).toBe('b');
+                });
+            });
         });
     });
 });

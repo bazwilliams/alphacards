@@ -16,12 +16,9 @@ define([
                     return candidates;
                 },
                 deal: function () {
-                    var guessCardIndex = Math.floor(Math.random() * letters.length);
-                    var candidate2Index = Math.floor(Math.random() * letters.length);
-                    var candidate3Index = Math.floor(Math.random() * letters.length);
-                    card.set('letter', letters[guessCardIndex]);
-                    candidates.get(1).set('letter', letters[candidate2Index]);
-                    candidates.get(2).set('letter', letters[candidate3Index]);
+                    candidates.forEach(function (model) {
+                        model.set('letter', letters[Math.floor(Math.random() * letters.length)]);
+                    });
                     candidates.sort();
                 }
             };

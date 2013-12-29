@@ -6,6 +6,9 @@ define([
 ], function ($, Backbone, Card) {
     "use strict";
     return Backbone.Collection.extend({
-        model: Card
+        model: Card,
+        comparator: function(model) {
+            return model.get('letter');
+        }
     });
 });

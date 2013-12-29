@@ -41,8 +41,10 @@ define([
         });
         describe('When dealing a new game', function () {
             describe('When changing guess card', function () {
-                var initialLetter, newLetter;
+                var initialLetter, newLetter, candidates;
                 beforeEach(function () {
+                    candidates = sut.candidates();
+                    spyOn(candidates, 'sort').andCallThrough();
                     initialLetter = sut.guessCard().get('letter');
                     sut.deal();
                     newLetter = sut.guessCard().get('letter');
@@ -50,6 +52,9 @@ define([
                 it('card letter should change', function () {
                     expect(initialLetter).not.toBe(newLetter);
                 });
+                it('should resort the collection', function () {
+                    expect(candidates.sort).toHaveBeenCalled();
+                })
             });
         });
     });

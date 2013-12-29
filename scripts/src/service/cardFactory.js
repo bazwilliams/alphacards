@@ -6,9 +6,9 @@ define([
     "use strict";
     return {
         initialize: function (letters) {
-            var card = new Card({letter: letters[0]});
-            var candidates = new Cards([card,{letter: letters[1]},{letter: letters[2]}]);
-            return {
+            var card = new Card({id: 0});
+            var candidates = new Cards([card, {id: 1}, {id: 2}]);
+            var cards = {
                 guessCard: function () {
                     return card;
                 },
@@ -16,9 +16,17 @@ define([
                     return candidates;
                 },
                 deal: function () {
-                    card.set('letter', letters[1]);
+                    var guessCardIndex = Math.floor(Math.random() * letters.length);
+                    var candidate2Index = Math.floor(Math.random() * letters.length);
+                    var candidate3Index = Math.floor(Math.random() * letters.length);
+                    card.set('letter', letters[guessCardIndex]);
+                    candidates.get(1).set('letter', letters[candidate2Index]);
+                    candidates.get(2).set('letter', letters[candidate3Index]);
+                    candidates.sort();
                 }
             };
+            cards.deal();
+            return cards;
         }
     };
 });

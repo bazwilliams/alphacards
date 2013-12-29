@@ -2,15 +2,15 @@
 define([
     'jquery',
     'backbone',
-    'models/Card',
-    'collections/Cards',
+    'service/cardFactory',
     'views/GameView'
-], function ($, Backbone, Card, Cards, GameView) {
+], function ($, Backbone, cardFactory, GameView) {
     "use strict";
     var initialize = function () {
+        var cards = cardFactory.initialize('abcdefghijklmnopqrstuvwxyz');
         var gameView = new GameView({
-            model: new Card({letter: 'a'}),
-            collection: new Cards([{letter: 'a'}, {letter: 'b'}, {letter: 'c'}])
+            model: cards.guessCard(),
+            collection: cards.candidates()
         });
         gameView.render();
         $(document).find('.container').append(gameView.el);

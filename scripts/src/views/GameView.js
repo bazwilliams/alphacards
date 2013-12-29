@@ -3,11 +3,10 @@ define([
     'jquery',
     'backbone',
     'handlebars',
-    'models/Card',
     'views/CardView',
     'text!templates/GameTemplate.tpl',
     'extensions'
-], function ($, Backbone, Handlebars, Card, CardView, Template) {
+], function ($, Backbone, Handlebars, CardView, Template) {
     "use strict";
     return Backbone.View.extend({
         initialize: function () {

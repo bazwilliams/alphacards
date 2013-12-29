@@ -13,6 +13,7 @@ define([
             collection: cards.candidates()
         });
         gameView.render();
+//        gameView.on('win', cards.deal);
         $(document).find('.container').append(gameView.el);
     };
 

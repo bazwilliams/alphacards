@@ -10,8 +10,8 @@ define([
         var el, card, candidates, sut;
         beforeEach(function () {
             el = $('<div></div>');
-            card = new Card();
-            candidates = new Cards([{},{},{}]);
+            card = new Card({letter: 'a'});
+            candidates = new Cards([card, {letter: 'b'},{letter: 'c'}]);
             sut = new GameView({
                 el: el,
                 model: card,
@@ -25,39 +25,79 @@ define([
             it('should display placeholder for card to guess', function () {
                 expect(el.find('#card-to-guess').size()).toBe(1);
             });
+            it('should append content to the card to guess', function () {
+                expect(el.find('#card-to-guess').children().size()).toBeGreaterThan(0);
+            });
             it('should display a placeholder for candidate card 1', function () {
                 expect(el.find('#candidate-card-1').size()).toBe(1);
+            });
+            it('should append content to candidate card 1', function () {
+                expect(el.find('#candidate-card-1').children().size()).toBeGreaterThan(0);
             });
             it('should display a placeholder for candidate card 2', function () {
                 expect(el.find('#candidate-card-2').size()).toBe(1);
             });
+            it('should append content to candidate card 2', function () {
+                expect(el.find('#candidate-card-2').children().size()).toBeGreaterThan(0);
+            });
             it('should display a placeholder for candidate card 3', function () {
                 expect(el.find('#candidate-card-3').size()).toBe(1);
             });
-            describe('When model updated', function () {
+            it('should append content to candidate card 3', function () {
+                expect(el.find('#candidate-card-3').children().size()).toBeGreaterThan(0);
+            });
+            describe('and clicking', function () {
+                var winDetected, wrongGuessDetected, onWin, onWrongGuess;
                 beforeEach(function () {
-                    card.set('letter','b');
+                    winDetected = false;
+                    wrongGuessDetected = false;
+                    onWin = function () {
+                        winDetected = true;
+                    }
+                    onWrongGuess = function () {
+                        wrongGuessDetected = true;
+                    }
+                    sut.on('win', onWin, this);
+                    sut.on('incorrect', onWrongGuess, this);
                 });
-                it('should append content to the card to guess', function () {
-                    expect(el.find('#card-to-guess').children().size()).toBeGreaterThan(0);
+                afterEach(function () {
+                    sut.off('win', onWin, this);
+                    sut.off('incorrect', onWrongGuess, this);
+                })
+                describe('the correct card', function () {
+                    beforeEach(function () {
+                        el.find('#candidate-card-1 .card').click();
+                    })
+                    it('should trigger win event', function () {
+                        expect(winDetected).toBe(true);
+                    });
+                    it('should not trigger incorrect guess event', function () {
+                        expect(wrongGuessDetected).toBe(false);
+                    });
+                });
+                describe('the first incorrect card', function () {
+                    beforeEach(function () {
+                        el.find('#candidate-card-2 .card').click();
+                    });
+                    it('should not trigger win event', function () {
+                        expect(winDetected).toBe(false);
+                    });
+                    it('should trigger incorrect guess event', function () {
+                        expect(wrongGuessDetected).toBe(true);
+                    });
+                });
+                describe('the second incorrect card', function () {
+                    beforeEach(function () {
+                        el.find('#candidate-card-3 .card').click();
+                    });
+                    it('should not trigger win event', function () {
+                        expect(winDetected).toBe(false);
+                    });
+                    it('should trigger incorrect guess event', function () {
+                        expect(wrongGuessDetected).toBe(true);
+                    });
                 });
             });
-            describe('When candidates updated', function () {
-                beforeEach(function () {
-                    candidates.at(0).set('letter', 'b');
-                    candidates.at(1).set('letter', 'c');
-                    candidates.at(2).set('letter', 'd');
-                });
-                it('should append content to candidate card 1', function () {
-                    expect(el.find('#candidate-card-1').children().size()).toBeGreaterThan(0);
-                });
-                it('should append content to candidate card 2', function () {
-                    expect(el.find('#candidate-card-2').children().size()).toBeGreaterThan(0);
-                });
-                it('should append content to candidate card 3', function () {
-                    expect(el.find('#candidate-card-3').children().size()).toBeGreaterThan(0);
-                });
-            })
         });
     });
 });

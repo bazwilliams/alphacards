@@ -1,9 +1,11 @@
+@import url(http://fonts.googleapis.com/css?family=Muli);
+
 body {
     background-color: #009900;
     padding-top: 50px;
 }
 .container {
-    width: 1000px;
+    width: 960px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -14,7 +16,7 @@ body {
     text-align: center;
     position: relative;
     width: 175px;
-    height: 245px;
+    height: 260px;
     display: inline-block;
     cursor: pointer;
 }
@@ -24,25 +26,26 @@ body {
     text-align: center;
     box-shadow: 6px 6px 15px #676;
     border-radius: 10px;
+    padding-top: 30px;
 }
 .guess {
     display: inline-block;
 }
 .candidates {
     display: inline-block;
-    padding-left: 100px;
+    padding-left: 80px;
 }
 .guess > div {
     display: inline-block;
 }
 .candidates > div {
     display: inline-block;
-    padding-left: 50px;
+    padding-left: 40px;
 }
 .letter {
     font-size: 150px;
     color: #726252;
-    font-family: Comic Sans, Comic Sans MS, cursive;
+    font-family: 'Muli', sans-serif;
 }
 
 .card.inactive .front {

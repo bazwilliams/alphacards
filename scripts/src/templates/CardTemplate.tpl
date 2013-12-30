@@ -3,5 +3,7 @@
     <span class="letter">{{letter}}</span>
     </div>
     <div class="back face">
+    <div class="inner">
+    </div>
     </div>
 </div>

@@ -6,7 +6,7 @@ define([
 ], function ($, Card, CardView) {
     "use strict";
     describe('CardView', function () {
-        var el, model, sut, callback;
+        var el, model, sut, callback, callbackResult;
         beforeEach(function () {
             el = $('<div></div>');
             model = new Card(
@@ -15,7 +15,7 @@ define([
             callback = {
                 callback: function () {}
             };
-            spyOn(callback, 'callback');
+            spyOn(callback, 'callback').andReturn(callbackResult);
             sut = new CardView({
                 el: el,
                 model: model,
@@ -30,12 +30,30 @@ define([
                 expect(el.find('.card .letter').text()).toBe('a');
             });
             describe('and clicked', function () {
-                beforeEach(function () {
-                    el.find('.card').click();
+                describe('where callback returns false', function () {
+                    beforeEach(function () {
+                        callbackResult = false;
+                        el.find('.card').click();
+                    });
+                    it('should execute callback', function () {
+                        expect(callback.callback).toHaveBeenCalled();
+                    });
+                    it('should add inactive class', function () {
+                        expect(el.find('.inactive').size()).toBe(1);
+                    });
                 });
-                it('should execute callback', function () {
-                    expect(callback.callback).toHaveBeenCalled();
-                })
+                describe('where callback returns true', function () {
+                    beforeEach(function () {
+                        callbackResult = true;
+                        el.find('.card').click();
+                    });
+                    it('should execute callback', function () {
+                        expect(callback.callback).toHaveBeenCalled();
+                    });
+                    it('should not add inactive class', function () {
+                        expect(el.find('.inactive').size()).toBe(0);
+                    });
+                });
             });
             describe('and changed', function () {
                 beforeEach(function () {

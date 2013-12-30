@@ -7,22 +7,104 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 .card {
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    text-align: center;
+    position: relative;
     width: 175px;
-    height: 225px;
-    background-color: #FAFAFA;
+    height: 245px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.card .face {
     margin: 20px;
     text-align: center;
-    float: left;
     box-shadow: 6px 6px 15px #676;
     border-radius: 10px;
-    padding-top:20px;
+}
+.guess {
+    display: inline-block;
 }
 .candidates {
+    display: inline-block;
     padding-left: 100px;
-    overflow: hidden;
+}
+.guess > div {
+    display: inline-block;
+}
+.candidates > div {
+    display: inline-block;
+    padding-left: 50px;
 }
 .letter {
     font-size: 150px;
     color: #726252;
+    font-family: Comic Sans, Comic Sans MS, cursive;
+}
+
+.card.inactive .front {
+    z-index: 900;
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+}
+
+.card .front {
+    background-color: #FAFAFA;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    width: inherit;
+    height: inherit;
+    display: inline-block;
+    -webkit-transform: rotateX(0deg) rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+    -moz-transform: rotateX(0deg) rotateY(0deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+
+    /* -- transition is the magic sauce for animation -- */
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+
+.card.inactive .back {
+    z-index: 1000;
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+}
+
+.card .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 800;
+    width: inherit;
+    height: inherit;
+    display: inline-block;
+    background-color: #BB6;
+
+    -webkit-transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+
+    -moz-transform: rotateY(-180deg);
+    -moz-transform-style: preserve-3d;
+    -moz-backface-visibility: hidden;
+
+    /* -- transition is the magic sauce for animation -- */
+    -o-transition: all .4s ease-in-out;
+    -ms-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
 }

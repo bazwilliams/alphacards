@@ -15,7 +15,9 @@ define([
             this.listenTo(this.model, 'change:letter', this.render);
         },
         clicked: function () {
-            this.callback();
+            if (!this.callback()) {
+                this.$el.find('.card').addClass('inactive');
+            }
         },
         render: function () {
             var template = Handlebars.compile(Template);

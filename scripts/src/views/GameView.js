@@ -15,9 +15,11 @@ define([
                 return function() {
                     if (candidate.get('letter') === that.model.get('letter')) {
                         that.correctCardClicked();
+                        return true;
                     }
                     else {
                         that.incorrectCardClicked();
+                        return false;
                     }
                 };
             };
@@ -36,7 +38,7 @@ define([
         correctCardClicked: function () {
             this.trigger('win');
         },
-        incorrectCardClicked: function () {
+        incorrectCardClicked: function (e) {
             this.trigger('incorrect');
         },
         render: function () {

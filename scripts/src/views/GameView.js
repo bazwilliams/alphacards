@@ -14,13 +14,11 @@ define([
             var getCallbackForCandidate = function (candidate) {
                 return function() {
                     if (candidate.get('letter') === that.model.get('letter')) {
-                        that.correctCardClicked();
+                        that.trigger('win');
                         return true;
                     }
-                    else {
-                        that.incorrectCardClicked();
-                        return false;
-                    }
+                    that.trigger('incorrect');
+                    return false;
                 };
             };
             this.guessCardView = new CardView({
@@ -34,12 +32,6 @@ define([
                 });
             });
             this.listenTo(this.collection, 'sort', this.render);
-        },
-        correctCardClicked: function () {
-            this.trigger('win');
-        },
-        incorrectCardClicked: function (e) {
-            this.trigger('incorrect');
         },
         render: function () {
             var template = Handlebars.compile(Template);
